@@ -1,0 +1,616 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solution Cloud</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+    <script src="index.js"></script>
+
+</head>
+
+<body>
+    <!-- Top Header -->
+    <div class="top-header py-2" style="background-color: #ced4da;">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <!-- Language Dropdown -->
+            <ul class="navbar-nav flex-row">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        English
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                        <li><a class="dropdown-item" href="#">Deutsch</a></li>
+                        <li><a class="dropdown-item" href="#">Français</a></li>
+                        <li><a class="dropdown-item" href="#">中文</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Support -->
+            <div>
+                <a href="#" class="text-black text-decoration-none" data-bs-toggle="modal"
+                    data-bs-target="#contactModal">
+                    <i class="bi bi-headset"></i> Support
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/images/logo.png" alt="Solution Cloud Logo" style="height:70px; width:auto;">
+            </a>
+
+            <div class="d-flex align-items-center">
+                <!-- Search Icon with Text -->
+                <a href="#" class="me-3 d-flex align-items-center text-light text-decoration-none"
+                    onclick="toggleSearch()">
+                    <i class="bi bi-search me-1"></i> <span>Search</span>
+                </a>
+
+                <span class="text-light mx-2">|</span>
+
+                <!-- Side Menu Icon with Text (no button) -->
+                <a href="#" class="d-flex align-items-center text-light text-decoration-none" data-bs-toggle="offcanvas"
+                    data-bs-target="#sideMenu">
+                    <i class="bi bi-list me-1"></i> <span>Menu</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Side Menu (Offcanvas) -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="sideMenu">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title">Menu</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            <ul class="navbar-nav">
+                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Solutions</a></li>
+
+                <!-- Products with Accordion -->
+                <div class="accordion" id="accordionMenu">
+                    <div class="accordion-item" style="background:#ced4da; border:none;">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseProducts">
+                                Products
+                                <span class="toggle-icon"></span>
+                            </button>
+                        </h2>
+                        <div id="collapseProducts" class="accordion-collapse collapse" data-bs-parent="#accordionMenu">
+                            <div class="accordion-body">
+                                <a href="#">FIRE RESISTANT CABLE</a>
+                                <a href="#">COMMUNICATION CABLES</a>
+                                <a href="#">BMS CABLES</a>
+                                <a href="#">DATA & NETWORKING</a>
+                                <a href="#">INDUSTRIAL AUTOMATION</a>
+                                <a href="#">KNX Range</a>
+                                <a href="#">GEM Compound</a>
+                                <a href="#">SOLAR CABLE</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Search Box -->
+    <div class="search-box" id="searchBox">
+        <button class="close-search" onclick="toggleSearch()">&times;</button>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <div class="trending mt-2">
+            <small>Trending Now:</small><br>
+            <span onclick="fillSearch('Cloud Security')">Cloud Security</span>
+            <span onclick="fillSearch('AI Solutions')">AI Solutions</span>
+            <span onclick="fillSearch('Networking')">Networking</span>
+            <span onclick="fillSearch('5G')">5G</span>
+        </div>
+        <div id="searchResults" class="mt-2"></div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg border-0 rounded-4">
+
+                <!-- Header -->
+                <div class="modal-header bg-dark text-white rounded-top-4">
+                    <h5 class="modal-title fw-semibold">📩 Get in Touch</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Body -->
+                <div class="modal-body p-4">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Name</label>
+                            <input type="text" class="form-control rounded-3" id="name" placeholder="Your full name"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Email</label>
+                            <input type="email" class="form-control rounded-3" id="email"
+                                placeholder="example@email.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Message</label>
+                            <textarea class="form-control rounded-3" id="message" rows="4"
+                                placeholder="Type your message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-gradient w-100 py-2">🚀 Send Message</button>
+                    </form>
+
+                    <!-- Success Alert -->
+                    <div id="successAlert" class="alert alert-success mt-3 d-none rounded-3">
+                        ✅ Thank you! Your message has been sent.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- navbar end -->
+    <!-- hero section start  -->
+    <section id="hero">
+        <div class="hero-inner">
+
+            <!-- Left Content -->
+            <div class="hero-content">
+                <h1>Empowering Businesses with Next-Gen Technology</h1>
+                <p>At Solution Cloud, we transform ideas into scalable digital experiences. Unlock innovation with
+                    seamless cloud solutions that take your business further.</p>
+                <!-- Button trigger modal -->
+                <a href="#" class="btn-look" data-bs-toggle="modal" data-bs-target="#videoModal">▶ Take a Look</a>
+            </div>
+
+            <!-- Right Video -->
+            <div class="hero-media">
+                <video autoplay muted loop playsinline>
+                    <source src="assets/videos/home page vid.tmp" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modal for Video -->
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content bg-dark">
+                <div class="modal-header border-0">
+                    <h5 class="modal-title text-white">Solution Cloud Demo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <video id="demoVideo" class="w-100" controls>
+                        <source src="assets/videos/home page vid.tmp" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- hero section complete -->
+
+    <!-- Visual Highlights Section -->
+    <!-- Visual Highlights Section -->
+    <section id="visual-highlights" class="py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">Visual Highlights</h2>
+            <div class="row justify-content-center g-4">
+
+                <!-- Video Card 1 -->
+                <div class="col-12 col-md-4 d-flex justify-content-center" data-aos="fade-up">
+                    <div class="video-card-square position-relative">
+                        <video autoplay muted loop playsinline class="w-100 h-100">
+                            <source src="assets/videos/Exhibition Video 1.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay-hover text-center">
+                            <h5>Prysmian Products</h5>
+                            <p>Showcasing innovative Prysmian cable solutions for modern industries.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 2 -->
+                <div class="col-12 col-md-4 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="video-card-square position-relative">
+                        <video autoplay muted loop playsinline class="w-100 h-100">
+                            <source src="assets/videos/Belden Video 3.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay-hover text-center">
+                            <h5>Belden Products</h5>
+                            <p>High-performance Belden networking and connectivity solutions.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Video Card 3 -->
+                <div class="col-12 col-md-4 d-flex justify-content-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="video-card-square position-relative">
+                        <video autoplay muted loop playsinline class="w-100 h-100">
+                            <source src="assets/videos/Prysmian Video 2.mp4" type="video/mp4">
+                        </video>
+                        <div class="overlay-hover text-center">
+                            <h5>Prysmian Fire Testing</h5>
+                            <p>Demonstrating fire-resistant cable performance under extreme conditions.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!-- Modal  for demo look
+    <div id="videoModal" class="modal-custom">
+        <div class="modal-content-custom">
+            <button class="modal-close">&times;</button>
+            <video id="modalVideo" controls autoplay muted loop></video>
+            <div class="modal-info text-center text-white mt-3">
+                <h4 id="modalTitle"></h4>
+                <p id="modalDesc"></p>
+            </div>
+            <div class="modal-controls">
+                <button id="muteBtn">🔇</button>
+                <button id="playPauseBtn">⏸️</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Stop video when modal closed
+        $('#videoModal').on('hidden.bs.modal', function () {
+            var video = document.getElementById("demoVideo");
+            video.pause();
+            video.currentTime = 0; // reset
+        });
+    </script> -->
+    <!-- visual highlights section end -->
+
+    <!-- brand section start -->
+    <section id="brands" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center mb-5">Brands We Offer</h2>
+            <div class="row g-4 justify-content-center align-items-center">
+
+                <!-- Brand 1 -->
+                <div class="col-6 col-md-3 col-lg-2 text-center">
+                    <div class="brand-card p-3 rounded-4 shadow-sm">
+                        <img src="assets/images/brand 1.png" alt="Brand 1" class="img-fluid">
+                    </div>
+                </div>
+
+                <!-- Brand 2 -->
+                <div class="col-6 col-md-3 col-lg-2 text-center">
+                    <div class="brand-card p-3 rounded-4 shadow-sm">
+                        <img src="assets/images/brand 2.png" alt="Brand 2" class="img-fluid">
+                    </div>
+                </div>
+
+                <!-- Brand 3 -->
+                <div class="col-6 col-md-3 col-lg-2 text-center">
+                    <div class="brand-card p-3 rounded-4 shadow-sm">
+                        <img src="assets/images/brand 3.png" alt="Brand 3" class="img-fluid">
+                    </div>
+                </div>
+
+                <!-- Brand 4 -->
+                <div class="col-6 col-md-3 col-lg-2 text-center">
+                    <div class="brand-card p-3 rounded-4 shadow-sm">
+                        <img src="assets/images/brand 4.png" alt="Brand 4" class="img-fluid">
+                    </div>
+                </div>
+
+                <!-- Brand 5 -->
+                <div class="col-6 col-md-3 col-lg-2 text-center">
+                    <div class="brand-card p-3 rounded-4 shadow-sm">
+                        <img src="assets/images/brand 5.png" alt="Brand 4" class="img-fluid">
+                    </div>
+                </div>
+
+                <!-- Add more brands as needed -->
+
+            </div>
+        </div>
+    </section>
+    <!-- brand section end -->
+
+    <section id="product-range">
+        <div class="container">
+            <h2 class="text-center">Our Product Range</h2>
+            <div class="row g-4">
+
+                <!-- Product 1 -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex">
+                    <div class="product-card w-100">
+                        <img src="assets/images/FIRE RESISTANT CABLE.jpg" alt="FIRE RESISTANT CABLE">
+                        <div class="product-info">
+                            <h5>FIRE RESISTANT CABLE</h5>
+                            <p>High quality fire resistant cables for safe industrial installations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex">
+                    <div class="product-card w-100">
+                        <img src="assets/images/communication cable.jpg" alt="COMMUNICATION CABLES">
+                        <div class="product-info">
+                            <h5>COMMUNICATION CABLES</h5>
+                            <p>Reliable communication cables for networking and data transfer.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="col-12 col-md-6 col-lg-4 d-flex">
+                    <div class="product-card w-100">
+                        <img src="assets/images/INDUSTRIAL AUTOMATION.jpg" alt="INDUSTRIAL AUTOMATION">
+                        <div class="product-info">
+                            <h5>INDUSTRIAL AUTOMATION</h5>
+                            <p>Advanced automation solutions for modern industrial needs.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add more products as needed -->
+
+            </div>
+        </div>
+    </section>
+    <!-- Product range section ended -->
+
+    <!-- Our Company Section with AOS -->
+<section id="our-company" class="py-5" style="background-color:#19183B; color:white;">
+  <div class="container">
+    <div class="row align-items-center g-4">
+
+      <!-- Left Image -->
+      <div class="col-md-6" data-aos="fade-right" data-aos-duration="1200" data-aos-easing="ease-in-out">
+        <img src="assets/images/our company.jpg" alt="SolutionCloud" 
+             class="img-fluid rounded-4 shadow-lg company-img"
+             style="height: 400px; width: 100%; object-fit: cover;">
+      </div>
+
+      <!-- Right Content -->
+      <div class="col-md-6" data-aos="fade-left" data-aos-duration="1200" data-aos-easing="ease-in-out">
+        <h2 class="mb-3 gradient-text">Our Company - SolutionCloud</h2>
+        <p class="lead mb-3">Connecting people, empowering innovation.</p>
+        <p>At SolutionCloud, we turn ideas into scalable digital solutions. As a trusted partner in networking, communications, and systems integration, we help businesses navigate the complex world of technology. Our team sees patterns and opportunities others miss, delivering solutions that are efficient, reliable, and future-ready.</p>
+        <p>With a focus on innovation and collaboration, we aim to create seamless experiences that connect people, processes, and technology. Your vision, amplified by our expertise.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+<!-- section ended -->
+
+<!-- Footer Section -->
+<footer class="footer-section">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Company Info -->
+      <div class="col-md-4 col-12 text-md-start text-center">
+        <h4>Solution Cloud</h4>
+        <p>We are a network, communications and systems integration partner who will help you discover, create and shape your world. We have opinions and a point of view and openness to the world of technology. We sense and see patterns and connections that others miss.</p>
+      </div>
+
+      <!-- Product Links -->
+      <div class="col-md-2 col-6 text-md-start text-center">
+        <h5>Products</h5>
+        <ul class="list-unstyled">
+          <li>Fire Resistance Cables</li>
+          <li>BMS & Control & Audio Cable</li>
+          <li>Customized Fire Alarm</li>
+          <li>CCTV</li>
+          <li>Structure Cabling</li>
+          <li>Data Center Designing</li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-2 col-6 text-md-start text-center">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-white text-decoration-none">Home</a></li>
+          <li><a href="#" class="text-white text-decoration-none">About Us</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Products</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Services</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Projects</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-md-4 col-12 text-md-start text-center">
+        <h5>Connect with us</h5>
+        <p>Shahrah-e-Faisal, Karachi, Pakistan</p>
+        <p>+92 334 3086 609</p>
+        <p>info@solutioncloud.pk</p>
+        <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-2">
+          <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-white fs-5"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-white fs-5"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Back to Top">Back to Top</button>
+
+  <!-- All Rights Reserved -->
+  <div class="text-center mt-4">
+    <p>© 2020 Solution Cloud. All Rights Reserved</p>
+  </div>
+</footer>
+
+<script>
+  // Show/hide Back to Top button
+  window.onscroll = function() {
+    const btn = document.getElementById("backToTop");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
+  };
+
+  // Smooth scroll to top
+  document.getElementById("backToTop").addEventListener("click", function() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+</script>
+
+    <!-- JS -->
+    <script>
+        // Toggle search
+        function toggleSearch() {
+            let box = document.getElementById("searchBox");
+            box.style.display = (box.style.display === "block") ? "none" : "block";
+        }
+
+        // Dataset
+        const dataset = [
+            "Cloud Security", "AI Solutions", "Networking", "5G", "Data Centers",
+            "IoT Solutions", "Cybersecurity", "Managed Services", "Software Development",
+            "Blockchain", "Big Data"
+        ];
+
+        // Fill search when trending clicked
+        function fillSearch(text) {
+            document.getElementById("searchInput").value = text;
+            searchNow();
+        }
+
+        // Search function
+        function searchNow() {
+            let query = document.getElementById("searchInput").value.toLowerCase();
+            let resultsDiv = document.getElementById("searchResults");
+            resultsDiv.innerHTML = "";
+
+            if (query.length > 0) {
+                let matches = dataset.filter(item => item.toLowerCase().includes(query));
+
+                if (matches.length > 0) {
+                    let html = "<ul class='list-group'>";
+                    matches.forEach(m => {
+                        html += `<li class="list-group-item">${m}</li>`;
+                    });
+                    html += "</ul>";
+                    resultsDiv.innerHTML = html;
+                } else {
+                    resultsDiv.innerHTML = "<p>No results found</p>";
+                }
+            }
+        }
+
+        // Event: on typing
+        document.getElementById("searchInput").addEventListener("input", searchNow);
+
+        // Contact Form Validation
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (document.getElementById("name").value &&
+                document.getElementById("email").value &&
+                document.getElementById("message").value) {
+                alert("Message sent successfully!");
+                this.reset();
+                var modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+                modal.hide();
+            } else {
+                alert("Please fill all fields.");
+            }
+        });
+        // <!-- JS for success message -->
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            document.getElementById("successAlert").classList.remove("d-none");
+            this.reset();
+        });
+
+        const cards = document.querySelectorAll('.video-card');
+        const modal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const closeBtn = document.querySelector('.modal-close');
+        const muteBtn = document.getElementById('muteBtn');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                modalVideo.src = card.dataset.src;
+                modalVideo.play();
+                modalTitle.innerText = card.dataset.title;
+                modalDesc.innerText = card.dataset.desc;
+                modalVideo.muted = true;
+                muteBtn.innerText = "🔇";
+                playPauseBtn.innerText = "⏸️";
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            modalVideo.pause();
+        });
+
+        muteBtn.addEventListener('click', () => {
+            modalVideo.muted = !modalVideo.muted;
+            muteBtn.innerText = modalVideo.muted ? "🔇" : "🔊";
+        });
+
+        playPauseBtn.addEventListener('click', () => {
+            if (modalVideo.paused) {
+                modalVideo.play();
+                playPauseBtn.innerText = "⏸️";
+            } else {
+                modalVideo.pause();
+                playPauseBtn.innerText = "▶️";
+            }
+        });
+
+    </script>
+    <!-- Include AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+
+
+    <!-- Bootstrap JS + jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
