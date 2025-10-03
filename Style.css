@@ -295,7 +295,7 @@ body {
 }
 
 /* Responsive */
-@media(max-width:880px) {
+@media(max-width: 880px) {
     #hero .hero-inner {
         flex-direction: column-reverse;
     }
@@ -305,14 +305,29 @@ body {
     }
 
     #hero .hero-content h1 {
-        font-size: 34px;
+        font-size: 32px;
+    }
+
+    #hero .hero-media {
+        flex: 0 0 100%;
     }
 
     #hero .hero-media video {
         clip-path: none;
         height: 240px;
+        border-radius: 20px;
+        border: 4px solid transparent; /* optional for spacing */
+    }
+
+    /* Gradient Border for Mobile */
+    #hero .hero-media::after {
+        clip-path: none;
+        border-radius: 20px;
+        padding: 4px; /* mobile border thickness */
+        background: linear-gradient(135deg, #7b3cff, #ffc07a);
     }
 }
+
 /* loop videos css */
 .video-card-square {
   position: relative;
