@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Solution Cloud</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="Style.css">
+    <script src="index.js"></script>
+
+    <!-- Bootstrap, AOS, Icons -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <!-- Add Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #fafafa;
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            top: -20%;
+            left: -20%;
+            width: 150%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent);
+            transform: rotate(45deg);
+        }
+
+        .hero .hero-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .hero .hero-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+        }
+
+        .hero p.subtitle {
+            font-size: 1.1rem;
+            margin-top: 8px;
+        }
+
+        .hero-icons {
+            margin-top: 20px;
+        }
+
+        .hero-icons i {
+            font-size: 1.8rem;
+            color: #ffd700;
+            margin-right: 15px;
+            transition: transform 0.3s;
+        }
+
+        .hero-icons i:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .hero-img {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-img img {
+            width: 320px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.8s ease;
+        }
+
+        .hero-img img:hover {
+            transform: scale(1.05);
+        }
+
+        section {
+            padding: 80px 20px;
+        }
+
+        section:nth-child(even) {
+            background: #f7f7f7;
+        }
+
+        h2.section-title {
+            font-weight: 700;
+            color: #4c00ff;
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2.section-title::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: -6px;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 3px;
+            background: linear-gradient(90deg, #4c00ff, #a100ff);
+            border-radius: 10px;
+        }
+
+
+        * Section Title */ .section-title {
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        /* Features List */
+        .features-list {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0;
+            list-style: none;
+        }
+
+        .features-list li {
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 16px;
+            border-radius: 10px;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+        }
+
+        .features-list li:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .features-list li i {
+            margin-right: 14px;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 4px;
+        }
+
+        /* Section Title */
+        .section-title {
+            font-weight: 700;
+            font-size: 2rem;
+        }
+
+        /* Property Grid */
+        .property-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+            justify-items: center;
+        }
+
+        /* Property Cards */
+        .property-card {
+            padding: 20px;
+            border-radius: 14px;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .property-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.25);
+        }
+
+        .property-card i {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        .specs-table {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .specs-table th {
+            text-align: center;
+            font-weight: 600;
+            background: linear-gradient(90deg, #6a11cb, #2575fc);
+            color: #fff !important;
+        }
+
+        .specs-table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .specs-table tr:hover {
+            background-color: rgba(102, 16, 242, 0.08);
+            transition: 0.3s ease;
+        }
+        /* Table responsive and styling */
+.table-responsive {
+  overflow-x: auto;
+  border-radius: 12px;
+}
+
+.specs-table th,
+.specs-table td {
+  white-space: nowrap;
+}
+
+.specs-table tbody tr:hover {
+  background-color: rgba(214, 51, 255, 0.1); /* light purple hover */
+}
+
+@media (max-width: 768px) {
+  .specs-table th,
+  .specs-table td {
+    font-size: 0.85rem;
+  }
+}
+
+        footer {
+            background: #4c00ff;
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+      <!-- Top Header -->
+    <div class="top-header py-2" style="background-color: #ced4da;">
+        <div class="container d-flex justify-content-between align-items-center">
+
+            <!-- Language Dropdown -->
+            <ul class="navbar-nav flex-row">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        English
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">English</a></li>
+                        <li><a class="dropdown-item" href="#">Deutsch</a></li>
+                        <li><a class="dropdown-item" href="#">Français</a></li>
+                        <li><a class="dropdown-item" href="#">中文</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!-- Support -->
+            <div>
+                <a href="#" class="text-black text-decoration-none" data-bs-toggle="modal"
+                    data-bs-target="#contactModal">
+                    <i class="bi bi-headset"></i> Support
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.png" alt="Solution Cloud Logo" style="height:70px; width:auto;">
+            </a>
+
+            <div class="d-flex align-items-center">
+                <!-- Search Icon with Text -->
+                <a href="#" class="me-3 d-flex align-items-center text-light text-decoration-none"
+                    onclick="toggleSearch()">
+                    <i class="bi bi-search me-1"></i> <span>Search</span>
+                </a>
+
+                <span class="text-light mx-2">|</span>
+
+                <!-- Side Menu Icon with Text (no button) -->
+                <a href="#" class="d-flex align-items-center text-light text-decoration-none" data-bs-toggle="offcanvas"
+                    data-bs-target="#sideMenu">
+                    <i class="bi bi-list me-1"></i> <span>Menu</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Side Menu (Offcanvas) -->
+    <!-- ======== SIDEMENU (OFFCANVAS) ======== -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="sideMenu">
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Menu</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <div class="offcanvas-body">
+    <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Solutions</a></li>
+
+      <!-- PRODUCTS DROPDOWN -->
+      <li class="nav-item">
+        <div class="d-flex justify-content-between align-items-center product-header" id="productToggle">
+          <span>Products</span>
+          <span class="product-icon">+</span>
+        </div>
+
+        <!-- BRAND LIST -->
+        <div class="product-content mt-2" style="display:none;">
+          <ul class="list-unstyled m-0 p-0">
+            
+            <!-- Prysmian -->
+            <li class="brand-item">
+              <div class="d-flex justify-content-between align-items-center brand-header">
+                <span>Prysmian</span>
+                <span class="arrow">&gt;</span>
+              </div>
+              <ul class="brand-sublist list-unstyled ps-3" style="display:none;">
+                <li><a href="#">FP 100</a></li>
+                <li><a href="FP200.html">FP 200 Gold</a></li>
+                <li><a href="#">FP Plus</a></li>
+                <li><a href="#">FP 400</a></li>
+                <li><a href="#">FP 600</a></li>
+                <li><a href="#">Draka Ft30</a></li>
+              </ul>
+            </li>
+
+            <!-- Belden -->
+            <li class="brand-item">
+              <div class="d-flex justify-content-between align-items-center brand-header">
+                <span>Belden</span>
+                <span class="arrow">&gt;</span>
+              </div>
+              <ul class="brand-sublist list-unstyled ps-3" style="display:none;">
+                <li><a href="#">Audio</a></li>
+                <li><a href="#">Control</a></li>
+                <li><a href="#">Communication</a></li>
+                <li><a href="#">BMS</a></li>
+                <li><a href="#">KNX</a></li>
+                <li><a href="#">Data & Networking</a></li>
+                <li><a href="#">Industrial Automation</a></li>
+              </ul>
+            </li>
+
+            <!-- Nvent Erico -->
+            <li class="brand-item">
+              <div class="d-flex justify-content-between align-items-center brand-header">
+                <span>Nvent Erico</span>
+                <span class="arrow">&gt;</span>
+              </div>
+              <ul class="brand-sublist list-unstyled ps-3" style="display:none;">
+                <li><a href="#">GEM Compound</a></li>
+              </ul>
+            </li>
+
+            <!-- Prysun -->
+            <li class="brand-item">
+              <div class="d-flex justify-content-between align-items-center brand-header">
+                <span>Prysun</span>
+                <span class="arrow">&gt;</span>
+              </div>
+              <ul class="brand-sublist list-unstyled ps-3" style="display:none;">
+                <li><a href="#">Solar Cable</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </li>
+
+      <li class="nav-item mt-2"><a class="nav-link" href="#">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== JS for side menu  ===== -->
+<script>
+const productToggle = document.getElementById('productToggle');
+const productContent = document.querySelector('.product-content');
+const productIcon = document.querySelector('.product-icon');
+
+// Toggle main product list
+productToggle.addEventListener('click', () => {
+  const isVisible = productContent.style.display === 'block';
+  if (isVisible) {
+    productContent.style.display = 'none';
+    productIcon.textContent = '+';
+    // close all brands too
+    document.querySelectorAll('.brand-sublist').forEach(sub => sub.style.display = 'none');
+    document.querySelectorAll('.brand-header').forEach(b => b.classList.remove('active'));
+  } else {
+    productContent.style.display = 'block';
+    productIcon.textContent = '−';
+  }
+});
+
+// Handle brand click
+document.querySelectorAll('.brand-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const sublist = header.nextElementSibling;
+    const isOpen = sublist.style.display === 'block';
+    document.querySelectorAll('.brand-sublist').forEach(s => s.style.display = 'none');
+    document.querySelectorAll('.brand-header').forEach(b => b.classList.remove('active'));
+    if (!isOpen) {
+      sublist.style.display = 'block';
+      header.classList.add('active');
+    }
+  });
+});
+</script>
+
+    <!-- Search Box -->
+    <div class="search-box" id="searchBox">
+        <button class="close-search" onclick="toggleSearch()">&times;</button>
+        <input type="text" id="searchInput" placeholder="Search...">
+        <div class="trending mt-2">
+            <small>Trending Now:</small><br>
+            <span onclick="fillSearch('Cloud Security')">Cloud Security</span>
+            <span onclick="fillSearch('AI Solutions')">AI Solutions</span>
+            <span onclick="fillSearch('Networking')">Networking</span>
+            <span onclick="fillSearch('5G')">5G</span>
+        </div>
+        <div id="searchResults" class="mt-2"></div>
+    </div>
+
+    <!-- Contact Modal -->
+    <div class="modal fade" id="contactModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content shadow-lg border-0 rounded-4">
+
+                <!-- Header -->
+                <div class="modal-header bg-dark text-white rounded-top-4">
+                    <h5 class="modal-title fw-semibold">📩 Get in Touch</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+
+                <!-- Body -->
+                <div class="modal-body p-4">
+                    <form id="contactForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Name</label>
+                            <input type="text" class="form-control rounded-3" id="name" placeholder="Your full name"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Email</label>
+                            <input type="email" class="form-control rounded-3" id="email"
+                                placeholder="example@email.com" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-medium">Message</label>
+                            <textarea class="form-control rounded-3" id="message" rows="4"
+                                placeholder="Type your message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-gradient w-100 py-2">🚀 Send Message</button>
+                    </form>
+
+                    <!-- Success Alert -->
+                    <div id="successAlert" class="alert alert-success mt-3 d-none rounded-3">
+                        ✅ Thank you! Your message has been sent.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- navbar end -->
+    <!-- HERO -->
+    <section class="hero">
+        <div class="container hero-content" data-aos="fade-up" data-aos-duration="1200">
+            <div class="hero-text">
+                <h1>FP200 GOLD®</h1>
+                <p class="subtitle">Fire Resistant Cable | BS 7629-1 | 300/500V</p>
+                <p>Standard fire resistant cable for critical life-safety and alarm systems.</p>
+                <div class="hero-icons">
+                    <i class="bi bi-shield-check-fill" title="Certified Safety"></i>
+                    <i class="bi bi-lightning-fill" title="Electrical Performance"></i>
+                    <i class="bi bi-fire" title="Fire Resistant"></i>
+                    <i class="bi bi-droplet-half" title="Low Smoke & Halogen Free"></i>
+                </div>
+            </div>
+            <div class="hero-img">
+                <img src="assets/images/f200.png" alt="FP200 GOLD Cable">
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURES / BENEFITS -->
+    <section data-aos="fade-up" data-aos-duration="1000" class="features-section py-5">
+        <div class="container text-center">
+            <h2 class="section-title mb-5">Features & Benefits</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-card p-4 shadow-lg rounded-4">
+                        <i class="bi bi-lightning-charge-fill feature-icon"></i>
+                        <p>Easy Stripping: Foil shields bonded to jacket for faster installation</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-card p-4 shadow-lg rounded-4">
+                        <i class="bi bi-check-circle-fill feature-icon"></i>
+                        <p>Rated for multiple applications: CM, CMR & CMP</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-card p-4 shadow-lg rounded-4">
+                        <i class="bi bi-shield-check feature-icon"></i>
+                        <p>Shorting fold technique for improved performance and shield integrity</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STANDARDS -->
+    <section data-aos="fade-up" data-aos-duration="1000" class="py-5" style="background: #0b3d91; color: #f1f1f1;">
+        <div class="container text-center">
+            <h2 class="section-title mb-4" style="color: #ff6b6b;">Standards & Certifications</h2>
+            <p class="mb-5" style="color: #d1d1d1; max-width: 700px; margin: 0 auto;">
+                Our cables meet the highest industry standards to ensure safety, durability, and optimal performance.
+            </p>
+            <ul class="features-list mx-auto">
+                <li><i class="fas fa-award" style="color: #d633ff;"></i>BS 7629-1 — Standard 30 & Standard 60
+                    construction</li>
+                <li><i class="fas fa-fire-alt" style="color: #d633ff;"></i>BS EN 50200 – PH30, PH60, Annex E</li>
+                <li><i class="fas fa-bolt" style="color: #d633ff;"></i>BS 6387 Category CWZ</li>
+                <li><i class="fas fa-cloud-slash" style="color: #d633ff;"></i>BS EN 60332-1-2, BS EN 61034-2, BS EN
+                    60754-1</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- CONSTRUCTION DETAILS -->
+    <section data-aos="fade-up" data-aos-duration="1000" class="py-5" style="background: whitesmoke; color: #1a1a1a;">
+        <div class="container text-center">
+            <h2 class="section-title mb-5" style="color: #0b3d91;">Construction Details</h2>
+            <div class="property-grid">
+                <div class="property-card" style="background-color: white; color: #1a1a1a;">
+                    <i class="fas fa-microchip" style="color: #d633ff;"></i>
+                    <strong>Conductor:</strong><br>Copper (Bare)
+                </div>
+                <div class="property-card" style="background-color: white; color: #1a1a1a;">
+                    <i class="fas fa-layer-group" style="color: #d633ff;"></i>
+                    <strong>Insulation:</strong><br>Crosslinked Polymer
+                </div>
+                <div class="property-card" style="background-color: white; color: #1a1a1a;">
+                    <i class="fas fa-shield-alt" style="color: #d633ff;"></i>
+                    <strong>Screen:</strong><br>Aluminium Metallised Foil
+                </div>
+                <div class="property-card" style="background-color: white; color: #1a1a1a;">
+                    <i class="fas fa-shield-virus" style="color: #d633ff;"></i>
+                    <strong>Sheath:</strong><br>LSZH (Low Smoke Zero Halogen)
+                </div>
+                <div class="property-card" style="background-color: white; color: #1a1a1a;">
+                    <i class="fas fa-circle" style="color: #d633ff;"></i>
+                    <strong>Shape:</strong><br>Round
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- APPLICATION PROPERTIES -->
+    <section data-aos="fade-up" data-aos-duration="1000" class="py-5" style="background: #0b1a59; color: #f1f1f1;">
+        <div class="container text-center">
+            <h2 class="section-title mb-5" style="color: #ff6b6b;">Application Properties</h2>
+            <div class="property-grid">
+                <div class="property-card" style="background-color: white; color: #1a1a1a;">
+                    <i class="fas fa-battery-half" style="color: #d633ff;"></i>
+                    <strong>Voltage:</strong><br>300 / 500 V
+                </div>
+                <div class="property-card" style="background-color: white; color: #1a1a1a;">
+                    <i class="fas fa-tint-slash" style="color: #d633ff;"></i>
+                    <strong>Halogen-Free:</strong><br>Yes
+                </div>
+                <div class="property-card" style="background-color: white; color: #1a1a1a;">
+                    <i class="fas fa-smog" style="color: #d633ff;"></i>
+                    <strong>Low Smoke:</strong><br>Yes
+                </div>
+                <div class="property-card" style="background-color: white; color: #1a1a1a;">
+                    <i class="fas fa-fire" style="color: #d633ff;"></i>
+                    <strong>Flame Retardant:</strong><br>BS EN 60332-1-2
+                </div>
+                <div class="property-card" style="background-color: white; color: #1a1a1a;">
+                    <i class="fas fa-thermometer-half" style="color: #d633ff;"></i>
+                    <strong>Temp Range:</strong><br>−25°C to 70°C
+                </div>
+                <div class="property-card" style="background-color: white; color: #1a1a1a;">
+                    <i class="fas fa-sun" style="color: #d633ff;"></i>
+                    <strong>UV Resistant:</strong><br>Yes
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- COLOURS & RATINGS -->
+    <section data-aos="fade-up" data-aos-duration="1000" class="py-5"
+        style="background: linear-gradient(135deg, #0b3d91, #1a1a2e); color: #f1f1f1;">
+        <div class="container text-center">
+            <h2 class="section-title mb-3" style="color: #ff6b6b;">Colours & Ratings</h2>
+            <p class="mb-5" style="max-width: 700px; margin: 0 auto; font-size: 1.1rem; color: #d1d1d1;">
+                Understanding cable cores and their color codes is essential for safe and efficient wiring. Explore
+                standard ratings and core identification below to make informed choices.
+            </p>
+
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card bg-gradient shadow-sm border-0">
+                        <div class="card-body">
+                            <i class="fas fa-circle" style="color: brown; font-size: 24px;"></i>
+                            <i class="fas fa-circle" style="color: blue; font-size: 24px;"></i>
+                            <h5 class="mt-2">Two Cores</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card bg-gradient shadow-sm border-0">
+                        <div class="card-body">
+                            <i class="fas fa-circle" style="color: brown;"></i>
+                            <i class="fas fa-circle" style="color: black;"></i>
+                            <i class="fas fa-circle" style="color: grey;"></i>
+                            <h5 class="mt-2">Three Cores</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card bg-gradient shadow-sm border-0">
+                        <div class="card-body">
+                            <i class="fas fa-circle" style="color: blue;"></i>
+                            <i class="fas fa-circle" style="color: brown;"></i>
+                            <i class="fas fa-circle" style="color: black;"></i>
+                            <i class="fas fa-circle" style="color: grey;"></i>
+                            <h5 class="mt-2">Four Cores</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 mb-3">
+                    <div class="card bg-gradient shadow-sm border-0">
+                        <div class="card-body">
+                            <i class="fas fa-hashtag" style="color: white; font-size: 24px;"></i>
+                            <h5 class="mt-2">7–19 Cores (Numbered)</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <p class="mt-4" style="font-size: 1rem;">
+                <i class="fas fa-shield-alt" style="color: #ff6b6b;"></i> Sheath: Red or White
+            </p>
+            <p class="mt-2" style="color: #c1c1c1;">
+                <em>Refer to table 4D2 of BS 7671 for current ratings.</em>
+            </p>
+        </div>
+    </section>
+
+    <!-- technical table section start  -->
+    <section class="py-5" style="background: whitesmoke;">
+  <div class="container" data-aos="fade-up" data-aos-duration="1000">
+    <h3 class="fw-bold mb-4 text-center" style="color: #0b3d91;">Technical Specifications</h3>
+
+    <div class="table-responsive shadow-sm rounded-3 bg-white p-3">
+      <table class="table table-striped table-hover align-middle specs-table mb-0">
+        <thead class="table-dark" style="background-color: #0b3d91; color: #fff;">
+          <tr>
+            <th>Number of Cores</th>
+            <th>Nominal Cross Section (mm²)</th>
+            <th>Conductor Category</th>
+            <th>Protective Conductor (mm²)</th>
+            <th>Outer Diameter (mm)</th>
+            <th>Cable Weight (kg/km)</th>
+            <th>Conductor Resistance (Ω/km)</th>
+            <th>Embodied Carbon (CO₂e kg/km)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>2</td><td>1</td><td>Class 1 = solid</td><td>1</td><td>7.8</td><td>79</td><td>18.1</td><td>391</td></tr>
+          <tr><td>2</td><td>1.5</td><td>Class 1 = solid</td><td>1.5</td><td>7.9</td><td>91</td><td>12.1</td><td>441</td></tr>
+          <tr><td>2</td><td>2.5</td><td>Class 1 = solid</td><td>2.5</td><td>9.5</td><td>140</td><td>7.41</td><td>732</td></tr>
+          <tr><td>2</td><td>4</td><td>Class 2 = stranded</td><td>4</td><td>11.6</td><td>205</td><td>4.61</td><td>1,092</td></tr>
+          <tr><td>3</td><td>1.5</td><td>Class 1 = solid</td><td>1.5</td><td>8.5</td><td>120</td><td>12.1</td><td>579</td></tr>
+          <tr><td>3</td><td>2.5</td><td>Class 1 = solid</td><td>2.5</td><td>10.4</td><td>180</td><td>7.41</td><td>949</td></tr>
+          <tr><td>3</td><td>4</td><td>Class 2 = stranded</td><td>4</td><td>12.3</td><td>260</td><td>4.61</td><td>1,413</td></tr>
+          <tr><td>4</td><td>1.5</td><td>Class 1 = solid</td><td>1.5</td><td>10</td><td>150</td><td>12.1</td><td>721</td></tr>
+          <tr><td>4</td><td>2.5</td><td>Class 1 = solid</td><td>2.5</td><td>11.9</td><td>225</td><td>7.41</td><td>1,173</td></tr>
+          <tr><td>4</td><td>4</td><td>Class 2 = stranded</td><td>4</td><td>13.5</td><td>320</td><td>4.61</td><td>1,749</td></tr>
+          <tr><td>7</td><td>1.5</td><td>Class 1 = solid</td><td>1</td><td>13.5</td><td>250</td><td>12.1</td><td>1,257</td></tr>
+          <tr><td>7</td><td>2.5</td><td>Class 2 = stranded</td><td>1</td><td>16.3</td><td>395</td><td>7.41</td><td>1,910</td></tr>
+          <tr><td>12</td><td>1.5</td><td>Class 1 = solid</td><td>1</td><td>17.7</td><td>410</td><td>12.1</td><td>2,034</td></tr>
+          <tr><td>12</td><td>2.5</td><td>Class 2 = stranded</td><td>1</td><td>22</td><td>640</td><td>7.41</td><td>3,105</td></tr>
+          <tr><td>19</td><td>1.5</td><td>Class 1 = solid</td><td>1</td><td>21</td><td>590</td><td>12.1</td><td>2,915</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+
+    <!-- Footer Section -->
+<footer class="footer-section">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Company Info -->
+      <div class="col-md-4 col-12 text-md-start text-center">
+        <h4>Solution Cloud</h4>
+        <p>We are a network, communications and systems integration partner who will help you discover, create and shape your world. We have opinions and a point of view and openness to the world of technology. We sense and see patterns and connections that others miss.</p>
+      </div>
+
+      <!-- Product Links -->
+      <div class="col-md-2 col-6 text-md-start text-center">
+        <h5>Products</h5>
+        <ul class="list-unstyled">
+          <li>Fire Resistance Cables</li>
+          <li>BMS & Control & Audio Cable</li>
+          <li>Customized Fire Alarm</li>
+          <li>CCTV</li>
+          <li>Structure Cabling</li>
+          <li>Data Center Designing</li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-md-2 col-6 text-md-start text-center">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="#" class="text-white text-decoration-none">Home</a></li>
+          <li><a href="#" class="text-white text-decoration-none">About Us</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Products</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Services</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Projects</a></li>
+          <li><a href="#" class="text-white text-decoration-none">Contact Us</a></li>
+        </ul>
+      </div>
+
+      <!-- Contact Info -->
+      <div class="col-md-4 col-12 text-md-start text-center">
+        <h5>Connect with us</h5>
+        <p>Shahrah-e-Faisal, Karachi, Pakistan</p>
+        <p>+92 334 3086 609</p>
+        <p>info@solutioncloud.pk</p>
+        <div class="d-flex justify-content-center justify-content-md-start gap-3 mt-2">
+          <a href="#" class="text-white fs-5"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="text-white fs-5"><i class="bi bi-twitter"></i></a>
+          <a href="#" class="text-white fs-5"><i class="bi bi-linkedin"></i></a>
+          <a href="#" class="text-white fs-5"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" title="Back to Top">Back to Top</button>
+
+  <!-- All Rights Reserved -->
+  <div class="text-center mt-4">
+    <p>© 2025 Solution Cloud. All Rights Reserved</p>
+  </div>
+</footer>
+
+
+
+    <script>
+  // Show/hide Back to Top button
+  window.onscroll = function() {
+    const btn = document.getElementById("backToTop");
+    if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+      btn.style.display = "block";
+    } else {
+      btn.style.display = "none";
+    }
+  };
+
+  // Smooth scroll to top
+  document.getElementById("backToTop").addEventListener("click", function() {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+
+        // Toggle search
+        function toggleSearch() {
+            let box = document.getElementById("searchBox");
+            box.style.display = (box.style.display === "block") ? "none" : "block";
+        }
+
+        // Dataset
+        const dataset = [
+            "Cloud Security", "AI Solutions", "Networking", "5G", "Data Centers",
+            "IoT Solutions", "Cybersecurity", "Managed Services", "Software Development",
+            "Blockchain", "Big Data"
+        ];
+
+        // Fill search when trending clicked
+        function fillSearch(text) {
+            document.getElementById("searchInput").value = text;
+            searchNow();
+        }
+
+        // Search function
+        function searchNow() {
+            let query = document.getElementById("searchInput").value.toLowerCase();
+            let resultsDiv = document.getElementById("searchResults");
+            resultsDiv.innerHTML = "";
+
+            if (query.length > 0) {
+                let matches = dataset.filter(item => item.toLowerCase().includes(query));
+
+                if (matches.length > 0) {
+                    let html = "<ul class='list-group'>";
+                    matches.forEach(m => {
+                        html += `<li class="list-group-item">${m}</li>`;
+                    });
+                    html += "</ul>";
+                    resultsDiv.innerHTML = html;
+                } else {
+                    resultsDiv.innerHTML = "<p>No results found</p>";
+                }
+            }
+        }
+
+        // Event: on typing
+        document.getElementById("searchInput").addEventListener("input", searchNow);
+
+        // Contact Form Validation
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            if (document.getElementById("name").value &&
+                document.getElementById("email").value &&
+                document.getElementById("message").value) {
+                alert("Message sent successfully!");
+                this.reset();
+                var modal = bootstrap.Modal.getInstance(document.getElementById('contactModal'));
+                modal.hide();
+            } else {
+                alert("Please fill all fields.");
+            }
+        });
+        // <!-- JS for success message -->
+        document.getElementById("contactForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+            document.getElementById("successAlert").classList.remove("d-none");
+            this.reset();
+        });
+
+        const cards = document.querySelectorAll('.video-card');
+        const modal = document.getElementById('videoModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDesc = document.getElementById('modalDesc');
+        const closeBtn = document.querySelector('.modal-close');
+        const muteBtn = document.getElementById('muteBtn');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                modal.style.display = 'flex';
+                modalVideo.src = card.dataset.src;
+                modalVideo.play();
+                modalTitle.innerText = card.dataset.title;
+                modalDesc.innerText = card.dataset.desc;
+                modalVideo.muted = true;
+                muteBtn.innerText = "🔇";
+                playPauseBtn.innerText = "⏸️";
+            });
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+            modalVideo.pause();
+        });
+
+        muteBtn.addEventListener('click', () => {
+            modalVideo.muted = !modalVideo.muted;
+            muteBtn.innerText = modalVideo.muted ? "🔇" : "🔊";
+        });
+
+        playPauseBtn.addEventListener('click', () => {
+            if (modalVideo.paused) {
+                modalVideo.play();
+                playPauseBtn.innerText = "⏸️";
+            } else {
+                modalVideo.pause();
+                playPauseBtn.innerText = "▶️";
+            }
+        });
+
+    </script>
+    <!-- Include AOS -->
+    <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
+
+
+    <!-- Bootstrap JS + jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script>
+        AOS.init();
+
+        gsap.from(".hero-text h1", { x: -100, opacity: 0, duration: 1 });
+        gsap.from(".hero-text p", { x: -60, opacity: 0, delay: 0.4, duration: 1 });
+        gsap.from(".hero-img img", { scale: 0.8, opacity: 0, delay: 0.6, duration: 1 });
+    </script>
+</body>
+
+</html>

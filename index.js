@@ -42,3 +42,31 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+  document.querySelectorAll(".menu-toggle").forEach(button => {
+    button.addEventListener("click", () => {
+      const targetId = button.getAttribute("data-target");
+      const targetMenu = document.getElementById(targetId);
+      const isOpen = targetMenu.classList.contains("show");
+
+      // Close all submenus
+      document.querySelectorAll(".submenu").forEach(menu => menu.classList.remove("show"));
+      document.querySelectorAll(".toggle-icon").forEach(icon => icon.textContent = "+");
+
+      // Open selected submenu
+      if (!isOpen && targetMenu) {
+        targetMenu.classList.add("show");
+        const icon = button.querySelector(".toggle-icon");
+        if (icon) icon.textContent = "–";
+      }
+    });
+  });
+
+  // Back button
+  document.querySelectorAll(".back-btn").forEach(back => {
+    back.addEventListener("click", () => {
+      back.closest(".submenu").classList.remove("show");
+    });
+  });
+
+  
+

@@ -13,59 +13,71 @@
 }
 
 /* Side Menu */
-.offcanvas {
-    background-color: #ced4da;
-}
-
 .offcanvas .nav-link {
-    color: black !important;
-    font-weight: 500;
+  color: #222;
+  font-weight: 500;
+  transition: 0.3s;
+}
+.offcanvas .nav-link:hover {
+  color: #7f00ff;
 }
 
-/* Accordion Custom */
-.accordion-button {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #ced4da !important;
-    color: black !important;
-    font-weight: 600;
-    box-shadow: none;
+.product-header {
+  background: #dee2e6;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.product-header:hover {
+  background: linear-gradient(90deg, #7f00ff, #e100ff);
+  color: white;
+}
+.product-icon {
+  font-size: 20px;
+  font-weight: bold;
+  transition: 0.3s;
 }
 
-.accordion-button::after {
-    display: none;
+.product-content {
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 8px 10px;
 }
 
-.toggle-icon {
-    margin-left: auto;
-    font-size: 20px;
-    font-weight: bold;
-    color: black;
+.brand-item {
+  margin-bottom: 5px;
 }
-
-.accordion-button.collapsed .toggle-icon::before {
-    content: "+";
+.brand-header {
+  padding: 8px 10px;
+  background: #e9ecef;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
 }
-
-.accordion-button:not(.collapsed) .toggle-icon::before {
-    content: "−";
+.brand-header:hover {
+  background: linear-gradient(90deg, #7f00ff, #e100ff);
+  color: white;
 }
-
-.accordion-body {
-    background-color: #ced4da;
-    padding-left: 20px;
+.arrow {
+  font-weight: bold;
+  transition: transform 0.3s;
 }
-
-.accordion-body a {
-    display: block;
-    padding: 6px 0;
-    text-decoration: none;
-    color: black;
+.brand-header.active .arrow {
+  transform: rotate(90deg);
 }
-
-.accordion-body a:hover {
-    text-decoration: underline;
+.brand-sublist a {
+  text-decoration: none;
+  color: #333;
+  display: block;
+  padding: 4px 0;
+  transition: 0.3s;
+}
+.brand-sublist a:hover {
+  color: #7f00ff;
+  transform: translateX(4px);
 }
 
 /* Search Box */
@@ -549,25 +561,7 @@ body {
   transform: scale(1.05) rotate(-1deg);
   box-shadow: 0 25px 50px rgba(255, 192, 122, 0.4);
 }
-/* Mobile responsiveness */
-  @media (max-width: 767px) {
-    #our-company .company-img {
-      height: 300px; /* smaller height on mobile */
-    }
-    #our-company h2 {
-      font-size: 1.8rem;
-    }
-    #our-company p.lead {
-      font-size: 1rem;
-    }
-  }
 
-  /* Gradient text for heading */
-  .gradient-text {
-    background: linear-gradient(90deg, #7b3cff, #ffc07a);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
 /* footer section custom css */
 .footer-section {
   background: #1c1a4a; /* Dark purple contrast */
